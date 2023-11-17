@@ -26,50 +26,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Navbar Example</title>
+    <title>Your App</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-       
+        /* Custom CSS for Navbar */
         body {
             font-family: Arial, sans-serif;
-            margin: 10;
-            padding: 10;
         }
 
         .navbar {
-            background-color: #C5C5F1;
-            overflow: hidden;
+            background-color: #ADD8E6; /* Warna biru pastel */
+            padding: 8px 16px; /* Padding atas dan bawah */
+            position: relative; 
+        }
+        .navbar-nav {
+            width: 100%; /* Mengisi lebar navbar */
+            justify-content: center; /* Membuat seluruh item berada di tengah-tengah */
+            position: relative; 
+        }
+        /* Custom styling for nav links */
+        .navbar-nav .nav-link {
+            padding: 12px 16px; /* Padding atas dan bawah 12px, kiri dan kanan 16px */
+            margin: 0 80px; /* Margin kiri dan kanan 8px */
         }
 
-        .navbar a {
-            float: left;
-            display: block;
+        /* Custom styling for hover effect */
+        .navbar-nav .nav-link:hover {
+            background-color: #87CEFA; /* Warna hover biru lebih terang */
             color: black;
-            text-align: center;
-            padding: 5px 3px;
-            text-decoration: none;
-            font-size: 20px;
         }
-
-        .navbar a:hover {
-            background-color: #A0A0F3;
-            color: black;
+        .logout-button {
+            background-color: red; /* Warna merah */
+            color: white; /* Warna teks putih */
+            border: none; /* Hapus border */
+            padding: 8px 16px; /* Padding tombol */
+            position: absolute; /* Menjadikan posisi absolut */
+            top: 50%; /* Meletakkan pada posisi vertikal tengah */
+            transform: translateY(-50%); /* Menggeser ke atas sebesar setengah dari tinggi tombol */
+            right: 16px;
         }
     </style>
 </head>
 <body>
-    <div class="navbar">
-        <a href="#user">User</a>
-        <a href="#pemasukan">Pemasukan</a>
-        <a href="{{ route('pengeluaran.create') }}">Pengeluaran</a>
-        <a href="#logs">Logs</a>
+    <!-- Navbar Section -->
+    @section('navbar')
+        <!-- Bootstrap Navbar -->
+        <nav class="navbar navbar-expand-lg justify-content-center">
+        <div class="container-fluid justify-content-center">
+                <!-- Navbar brand/logo -->
+                <a class="navbar-brand" href="#">SIKAD</a>
+                
+                <!-- Toggler/collapsing button for small screens -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                
+                <!-- Navbar links -->
+                <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav justify-content-center">
+                        <li class="nav-item justify-content-center">
+                            <a class="nav-link" href="#user">User</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#pemasukan">Pemasukan</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#pengeluaran">Pengeluaran</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#logs">Logs</a>
+                        </li>
+                    </ul>
+                </div>
+                <button class="logout-button">Logout</button>
+            </div>
     </div>
-</body>
-</html>
-    <main class="py-4 container">
-        @include('layouts.flash-message')
+        </nav>
+    @show <!-- end of Navbar Section -->
+
+    <!-- Content Section -->
+    <div class="container">
         @yield('content')
-    </main>
-</div>
+
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 @yield('footer')
 <script>

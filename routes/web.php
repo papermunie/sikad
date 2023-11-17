@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('', function() {
-    return redirect('/pengeluaran');
+    return redirect('/');
 });
 
 Route::get('/login', [TblUserController::class, 'index'])->name('login');
