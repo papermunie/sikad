@@ -11,7 +11,7 @@
         <div class="row">
             <div class="col-md-4">
             @foreach(explode(',', $user->foto_profil) as $image)
-                <img src="{{ asset($user->foto_profil) }}" alt="Foto Profil" class="img-fluid">
+                <img src="{{ asset('storage/' . $image) }}" alt="Foto Profil" class="img-fluid">
                 @endforeach
             </div>
             <div class="col-md-8">
