@@ -10,7 +10,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class TblUserController extends Controller
+class AuthController extends Controller
 {
 
     public function __construct()
@@ -31,9 +31,9 @@ class TblUserController extends Controller
     {
         $data = $request->validated();
 
-        if (TblUser::attempt($data)) {
+        if (Auth::attempt($data)) {
             $request->session()->regenerate();
-            return TblUser::user();
+            return Auth::user();
         }
 
         return response()->json([
@@ -45,7 +45,7 @@ class TblUserController extends Controller
 
     public function logout()
     {
-        TblUser::logout();
+        Auth::logout();
         return redirect('/login');
     }
 }

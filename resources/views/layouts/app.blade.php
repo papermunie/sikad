@@ -36,29 +36,31 @@
         }
 
         .navbar {
-            background-color: #ADD8E6; /* Warna biru pastel */
-            padding: 8px 16px; /* Padding atas dan bawah */
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+            background-color: #C5C5F1; /* Warna biru pastel */
+            padding: 5px;
             position: relative; 
         }
         .navbar-nav {
             width: 100%; /* Mengisi lebar navbar */
-            justify-content: center; /* Membuat seluruh item berada di tengah-tengah */
+            justify-content:left;
             position: relative; 
         }
         /* Custom styling for nav links */
         .navbar-nav .nav-link {
-            padding: 12px 16px; /* Padding atas dan bawah 12px, kiri dan kanan 16px */
-            margin: 0 80px; /* Margin kiri dan kanan 8px */
+            padding: 12px 16px; 
+            margin: 0 150px; 
         }
 
         /* Custom styling for hover effect */
         .navbar-nav .nav-link:hover {
-            background-color: #87CEFA; /* Warna hover biru lebih terang */
+            background-color: #A0A0F3; 
             color: black;
         }
         .logout-button {
             background-color: red; /* Warna merah */
-            color: white; /* Warna teks putih */
+            color: black; /* Warna teks putih */
             border: none; /* Hapus border */
             padding: 8px 16px; /* Padding tombol */
             position: absolute; /* Menjadikan posisi absolut */
@@ -74,9 +76,6 @@
         <!-- Bootstrap Navbar -->
         <nav class="navbar navbar-expand-lg justify-content-center">
         <div class="container-fluid justify-content-center">
-                <!-- Navbar brand/logo -->
-                <a class="navbar-brand" href="#">SIKAD</a>
-                
                 <!-- Toggler/collapsing button for small screens -->
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -84,22 +83,22 @@
                 
                 <!-- Navbar links -->
                 <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav justify-content-center">
-                        <li class="nav-item justify-content-center">
-                            <a class="nav-link" href="#user">User</a>
+                <ul class="navbar-nav ms-auto"> 
+                        <li class="nav-item">
+                           <b> <a class="nav-link" href="#user">User</a></b>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#pemasukan">Pemasukan</a>
+                        <b> <a class="nav-link" href="{{ route('pemasukan.index') }}">Pemasukan</a></b>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#pengeluaran">Pengeluaran</a>
+                        <b> <a class="nav-link" href="{{ route('pengeluaran.index') }}">Pengeluaran</a></b>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#logs">Logs</a>
+                        <b>  <a class="nav-link" href="#logs">Logs</a></b>
                         </li>
                     </ul>
                 </div>
-                <button class="logout-button">Logout</button>
+                <b> <button class="logout-button">Logout</button></b>
             </div>
     </div>
         </nav>

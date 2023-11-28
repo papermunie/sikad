@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\PengeluaranKas; // Sesuaikan dengan model PengeluaranKas Anda
-
+use App\Models\PengeluaranKas; 
 class PengeluaranKasController extends Controller
 {
     // Menampilkan semua data kas keluar
@@ -15,8 +14,29 @@ class PengeluaranKasController extends Controller
     }
 
     // Menampilkan formulir untuk membuat data kas keluar baru
-    public function create()
-    {
+    public function create(Request $request, PengeluaranKas $pengeluaran)
+    { return view('dashboard.pengeluaran.create');
+          $user = 'risma@gmail.com';
+        // Validasi request jika diperlukan
+            $validatedData = $request->validate([
+                'kode_pengeluaran' => 'required',
+                'jenis_pengeluaran' => 'required',
+                'tanggal_pengeluaran' => 'required',
+                'jumlah_pengeluaran' => 'required',
+                'dokumentasi' => 'required',
+            ]);
+
+        // Simpan data ke dalam database
+        $pengeluaran->kode_pengeluaran = $request->input('kode_pengeluaran');
+        $pengeluaran->jenis_pengeluaran = $request->input('jenis_pengeluaran');
+        $pengeluaran->tanggal_pengeluaran = $request->input('tanggal_pengeluaran');
+        $pengeluaran->jumlah_pengeluaran = $request->input('jumlah_pengeluaran');
+        $pengeluaran->dokumentasi = $request->input('dokumentasi');
+      $pengeluaran->email_user = $user;
+        $pengeluaran->save();
+
+        // Redirect atau lakukan sesuatu setelah penyimpanan data
+        return redirect()->route('dashboard.pengeluaran.index');
         return view('dashboard.pengeluaran.create');
     }
 
@@ -25,15 +45,15 @@ class PengeluaranKasController extends Controller
     {
         // Validasi data input
         $validatedData = $request->validate([
-            'kode_pengeluaran' => 'required|unique:PengeluaranKas', // Memastikan kode pengeluaran unik
+            'kode_pengeluaran' => 'required', // Memastikan kode pengeluaran unik
             'email_user' => 'required|exists:users,email', // Memeriksa keberadaan email pada tabel User
-            'id_kategori_pengeluaran' => 'required|exists:kategori_pengeluarans,id', // Memeriksa keberadaan id kategori pada tabel KategoriPengeluaran
+            'id_kategori_pengeluaran' => 'required|exists:kategori_pengeluaran,id', // Memeriksa keberadaan id kategori pada tabel KategoriPengeluaran
             'tanggal_pengeluaran' => 'required|date',
             'jumlah_pengeluaran' => 'required|numeric',
 
             // tambahkan validasi lainnya jika diperlukan
         ]);
-
+        return view('dashboard.pengeluaran.create', compact('PengeluaranKas'));
         // Simpan data ke database
         PengeluaranKas::create($validatedData);
 

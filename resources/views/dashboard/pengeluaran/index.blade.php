@@ -1,13 +1,13 @@
-<!-- resources/views/pengeluaran/index.blade.php -->
+<!-- resources/views/Pengeluaran/index.blade.php -->
 @php use Illuminate\Support\Facades\Storage;use Illuminate\Support\Facades\URL; @endphp
 @extends('layouts.app')
 @section('title', 'Mengelola Pengeluaran Kas')
 @section('content')
 @section('content')
     <div class="container">
-        <h1>Daftar Kas Keluar</h1>
+        <h1>Daftar Kas Masuk</h1>
 
-        <a href="{{ route('pengeluaran.create') }}" class="btn btn-primary mb-3">Tambah Kas Keluar</a>
+        <a href="{{ route('pengeluaran.create') }}" class="btn btn-primary mb-3">Tambah Kas Masuk</a>
 
         @if(session('success'))
             <div class="alert alert-success">
@@ -17,19 +17,23 @@
 
         <table class="table">
             <thead>
-                <tr>
+            <tr>
                     <th>No.</th>
-                    <th>Nama</th>
+                    <th>Kode Pengeluaran</th>
+                    <th>Jenis Pengeluaran</th>
+                    <th>Tanggal Pengeluaran</th>
                     <th>Jumlah</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($PengeluaranKass as $index => $PengeluaranKas)
-                    <tr>
+                <tr>
                         <td>{{ $index + 1 }}</td>
-                        <td>{{ $PengeluaranKas->nama }}</td>
-                        <td>{{ $PengeluaranKas->jumlah }}</td>
+                        <td>{{ $PengeluaranKas->kode_pengeluaran }}</td> <!-- Ubah sesuai dengan kolom di database -->
+                        <td>{{ $PengeluaranKas->jenis_pengeluaran }}</td> <!-- Ubah sesuai dengan kolom di database -->
+                        <td>{{ $PengeluaranKas->tanggal_pengeluaran }}</td> <!-- Ubah sesuai dengan kolom di database -->
+                        <td>{{ $PengeluaranKas->jumlah_pengeluaran }}</td> <!-- Ubah sesuai dengan kolom di database -->
                         <td>
                             <a href="{{ route('pengeluaran.show', $PengeluaranKas->id) }}" class="btn btn-info btn-sm">Detail</a>
                             <a href="{{ route('pengeluaran.edit', $PengeluaranKas->id) }}" class="btn btn-primary btn-sm">Edit</a>

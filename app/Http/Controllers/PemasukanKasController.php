@@ -11,43 +11,52 @@ class PemasukanKasController extends Controller
     public function index()
     {
         $PemasukanKass = PemasukanKas::all();
-        return view('pemasukan.index', compact('PemasukanKass'));
+        return view('dashboard.pemasukan.index', compact('PemasukanKass'));
     }
 
     // Menampilkan formulir untuk membuat data kas masuk baru
     public function create()
     {
-        return view('pemasukan.create');
+        return view('dashboard.pemasukan.create');
     }
 
     // Menyimpan data kas masuk yang baru dibuat
-    public function store(Request $request)
-    {
-        // Validasi data input
-        $validatedData = $request->validate([
-            'nama' => 'required',
-            'jumlah' => 'required|numeric',
-            // sesuaikan validasi lainnya sesuai kebutuhan
-        ]);
+public function store(Request $request)
+{
+    // Validasi data (contoh)
+    $request->validate([
+        'kode_pemasukan' => 'required',
+        'id_kategori_pemasukan' => 'required',
+        'tanggal_pemasukan' => 'required',
+        'jumlah_pemasukan' => 'required',
+        // Tambahkan validasi sesuai kebutuhan
+    ]);
 
-        // Simpan data ke database
-        PemasukanKas::create($validatedData);
+    // Simpan data ke database
+    Pemasukan::create([
+        'kode_pemasukan' => $request->kode_pemasukan,
+        'id_kategori_pemasukan' => $request->id_kategori_pemasukan,
+        'tanggal_pemasukan' => $request->tanggal_pemasukan,
+        'jumlah_pemasukan' => $request->jumlah_pemasukan,
+        // Tambahkan field lainnya sesuai kebutuhan
+    ]);
 
-        return redirect()->route('pemasukan.index')->with('success', 'Data kas masuk berhasil ditambahkan!');
-    }
+    // Redirect atau kirim pesan sukses
+    return redirect()->route('pemasukan.index')->with('success', 'Data kas masuk berhasil ditambahkan');
+}
 
     // Menampilkan detail dari sebuah data kas masuk
     public function show($id)
     {
         $PemasukanKas = PemasukanKas::findOrFail($id);
-        return view('pemasukan.show', compact('PemasukanKas'));
+        return view('dashboard.pemasukan.show', compact('PemasukanKas'));
     }
 
     // Menampilkan formulir untuk mengedit data kas masuk
     public function edit($id)
     {
         $PemasukanKas = PemasukanKas::findOrFail($id);
-        return view('pemasukan.edit', compact('PemasukanKas'));
+        return view('dashboard.pemasukan.edit', compact('PemasukanKas'));
     }
 
     // Menyimpan perubahan pada data kas masuk yang sudah diedit
@@ -61,7 +70,7 @@ class PemasukanKasController extends Controller
 
         PemasukanKas::whereId($id)->update($validatedData);
 
-        return redirect()->route('pemasukan.index')->with('success', 'Data kas masuk berhasil diperbarui!');
+        return redirect()->route('dashboard.pemasukan.index')->with('success', 'Data kas masuk berhasil diperbarui!');
     }
 
     // Menghapus data kas masuk
@@ -70,6 +79,6 @@ class PemasukanKasController extends Controller
         $PemasukanKas = PemasukanKas::findOrFail($id);
         $PemasukanKas->delete();
 
-        return redirect()->route('pemasukan.index')->with('success', 'Data kas masuk berhasil dihapus!');
+        return redirect()->route('dashboard.pemasukan.index')->with('success', 'Data kas masuk berhasil dihapus!');
     }
 }

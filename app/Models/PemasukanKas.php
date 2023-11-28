@@ -11,16 +11,6 @@ class PemasukanKas extends Model
     public $timestamps = false;
     protected $table = 'pemasukan_kas';
     protected $primaryKey = 'kode_pemasukan';
-    protected $fillable = ['kode_pemasukan', 'email_user', 
+    protected $fillable = ['kode_pemasukan',
     'id_kategori_pemasukan', 'tanggal_pemasukan', 'jenis_pemasukan'];
-
-    public function kategoripemasukan()
-    {
-        return $this->belongsTo(kategoripemasukan::class, 'id_kategori_pemasukan');
-    }
-
-    public function tblUser()
-    {
-        return $this->belongsTo(tblUserser::class, 'email_user');
-    }
 }

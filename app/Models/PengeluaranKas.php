@@ -12,15 +12,10 @@ class PengeluaranKas extends Model
     protected $table = 'pengeluaran_kas';
     protected $primaryKey = 'kode_pengeluaran';
     protected $fillable = ['kode_pengeluaran', 'email_user', 
-    'id_kategori_pengeluaran', 'tanggal_pengeluaran', 'jenis_pengeluaran'];
+    'jenis_pengeluaran', 'tanggal_pengeluaran', 'jumlah_pengeluaran', 'dokumentasi'];
 
-    public function kategoriPengeluaran()
+    public function TblUser()
     {
-        return $this->belongsTo(kategoriPengeluaran::class, 'id_kategori_pengeluaran');
-    }
-
-    public function tblUser()
-    {
-        return $this->belongsTo(tblUserser::class, 'email_user');
+        return $this->belongsTo(TblUser::class, 'email_user');
     }
 }

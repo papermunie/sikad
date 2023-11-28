@@ -1,6 +1,6 @@
-<!-- resources/views/pengeluaran/store.blade.php -->
 
-@extends('layouts.app') <!-- Sesuaikan dengan layout yang Anda gunakan -->
+
+@extends('layouts.app') 
 
 @section('content')
     <div class="container">

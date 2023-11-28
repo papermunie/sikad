@@ -15,7 +15,7 @@ return new class extends Migration
             $table->string('email_user',50)->nullable(false)->primary();
             $table->text('password')->nullable(false);
             $table->string('foto_profil',225)->nullable(false);
-            $table->enum('role', ['Ketua DKM', 'Bendahara', 'Warga Sekolah']);
+            $table->enum('role', ['Ketua DKM', 'Bendahara', 'Warga Sekolah'])->nullable(false);
             $table->timestamps();
         }); 
     }
